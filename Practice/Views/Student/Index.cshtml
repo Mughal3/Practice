@@ -1,0 +1,50 @@
+﻿@model Practice.Models.StudentModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var stdud = ViewBag.xyz as Practice.Models.StudentModel;
+    var std = ViewData["vdata"] as Practice.Models.StudentModel;
+
+
+}
+
+<h2>Index</h2>
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Father Name</th>
+                <th>Address</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.StudentName</td>
+                <td>@Model.FatherName</td>
+                <td>@Model.Address</td>
+                <td>@Model.Age</td>
+            </tr>
+
+            <tr>
+                <td>@stdud.StudentName</td>
+                <td>@stdud.FatherName</td>
+                <td>@stdud.Address</td>
+                <td>@stdud.Age</td>
+            </tr>
+            <tr>
+                <td>@std.StudentName</td>
+                <td>@std.FatherName</td>
+                <td>@std.Address</td>
+                <td>@std.Age</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
