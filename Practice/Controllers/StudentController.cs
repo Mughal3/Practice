@@ -9,7 +9,7 @@ namespace Practice.Controllers
 {
     public class StudentController : Controller
     {
-        // GET: Student
+       
         public ActionResult Index()
         {
             StudentModel student = new StudentModel();
