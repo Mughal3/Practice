@@ -12,15 +12,25 @@ namespace Practice.Controllers
        
         public ActionResult Index()
         {
-            StudentModel student = new StudentModel();
+            //StudentModel student = new StudentModel();
             //ViewBag.First = "Muzamil";
 
-            student = SetStudentByModel();
+            var student = SetStudentByModel();
             SetStudentByViewBag();
             SetStudentByViewData();
             return View(student);
         }
-        public StudentModel SetStudentByModel()
+
+        public ActionResult Subject()
+        {
+            var sub = SetSubjectModel();
+            return View(sub);
+        }
+        public ActionResult Details()
+        {
+            return View();
+        }
+        private StudentModel SetStudentByModel()
         {
             StudentModel student = new StudentModel()
             {
@@ -32,7 +42,7 @@ namespace Practice.Controllers
             };
             return student;
         }
-        public void SetStudentByViewBag()
+        private void SetStudentByViewBag()
         {
             StudentModel obj = new StudentModel()
             {
@@ -45,7 +55,8 @@ namespace Practice.Controllers
             ViewBag.xyz=obj;
         }
 
-        public void SetStudentByViewData()
+        // sending student model data via viewBag
+        private void SetStudentByViewData()
         {
             StudentModel obj = new StudentModel()
             {
@@ -58,5 +69,47 @@ namespace Practice.Controllers
             ViewData["vdata"] = obj;
 
         }
+
+        private List<SubjectModel> SetSubjectModel()
+        {
+            List<SubjectModel> subjects = new List<SubjectModel>();
+            SubjectModel obj = new SubjectModel()
+            {
+                SubjectID = 10,
+                SubjectName = "Computer",
+                CreaditHourse = " 3 ",
+                Insturctor_Name = "SanaUlllah",
+                GPA = "4.0 "
+
+            }; 
+            SubjectModel ob1 = new SubjectModel()
+            {
+                SubjectID = 10,
+                SubjectName = "Computer",
+                CreaditHourse = " 3 ",
+                Insturctor_Name = "SanaUlllah",
+                GPA = "4.0 "
+
+            };
+
+            SubjectModel obj2 = new SubjectModel()
+            {
+                SubjectID = 10,
+                SubjectName = "Computer",
+                CreaditHourse = " 3 ",
+                Insturctor_Name = "SanaUlllah",
+                GPA = "4.0 "
+
+            };
+            subjects.Add(obj);
+            subjects.Add(ob1);
+            subjects.Add(obj2);
+            return subjects;
+
+        }
+
+        
     }
+
+   
 }
