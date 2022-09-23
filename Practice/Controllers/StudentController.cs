@@ -2,8 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Web;
 using System.Web.Mvc;
+
+using System.Data.SqlClient;
+using System.Data.OleDb;
+using System.Data.Odbc;
+using System.Data;
+using System.Drawing;
 
 namespace Practice.Controllers
 {
@@ -14,6 +21,10 @@ namespace Practice.Controllers
         {
             //StudentModel student = new StudentModel();
             //ViewBag.First = "Muzamil";
+
+           DB();
+
+           // DBnonq();
 
             var student = SetStudentByModel();
             SetStudentByViewBag();
@@ -108,7 +119,52 @@ namespace Practice.Controllers
 
         }
 
-        
+
+        private static SqlConnection _con;
+        private static SqlCommand _cmd;
+        private static SqlDataAdapter da;
+        private static DataTable dt = new DataTable();
+        public void DB()
+        {
+            string cons = "Data Source=DESKTOP-UL2SOTR;Initial Catalog=ClassLecture;Integrated Security=True";//"User ID=sa;Password=Alaska@123;";
+
+            // SqlConnection _Con = new SqlConnection()
+
+            _con = new SqlConnection(cons);
+            _con.Open();
+
+            _cmd = new SqlCommand("select * from birds", _con);
+
+            SqlDataAdapter sda = new SqlDataAdapter(_cmd);
+          
+            sda.Fill(dt);
+
+
+            _cmd.Dispose();
+            
+            _con.Close();
+        }
+
+
+        public void DBnonq()
+        {
+            string cons = "Data Source=DESKTOP-UL2SOTR;Initial Catalog=ClassLecture;Integrated Security=True";//"User ID=sa;Password=Alaska@123;";
+            // SqlConnection _Con = new SqlConnection()
+
+            _con = new SqlConnection(cons);
+            _con.Open();
+
+            _cmd = new SqlCommand("insert into birds (BirdName,TypeOfBird,ScientificName)values ('king','kong','pak')", _con);
+
+            _cmd.ExecuteNonQuery();
+
+
+            _cmd.Dispose();
+
+            _con.Close();
+        }
+
+
     }
 
    

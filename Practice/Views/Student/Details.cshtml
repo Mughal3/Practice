@@ -9,6 +9,12 @@
 
 <div>
     <h4>SubjectModel</h4>
+    @helper Test(string a)
+    {
+        <h1>@a</h1>
+    }
+    @Html.TextBoxFor(m => m.SubjectName)
+    @Test("Muzamil")
     <hr />
     <dl class="dl-horizontal">
         <dt>
